@@ -1,7 +1,7 @@
 import UIKit
 
-
-@objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController,  UITableViewDataSource, UITableViewDelegate
+//
+@objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController//,  UITableViewDataSource, UITableViewDelegate
 {
   var tasks: NSMutableArray = NSMutableArray()
   
@@ -25,6 +25,7 @@ import UIKit
   {
     super.viewDidLoad()
     loadinitialData()
+    self.navigationItem.leftBarButtonItem = self.editButtonItem()
   }
   
   override func didReceiveMemoryWarning()
@@ -74,5 +75,31 @@ import UIKit
     cell.accessoryType = task.completed ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
     
     return cell
+  }
+  
+  override func tableView(tableView: UITableView?, canEditRowAtIndexPath indexPath: NSIndexPath?) -> Bool
+  {
+    return true
+  }
+
+  override func tableView(tableView: UITableView?, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?)
+  {
+    if editingStyle == .Delete
+    {
+      tasks.removeObjectAtIndex(indexPath!.row)
+      tableView?.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+    }
+    else if editingStyle == .Insert
+    {
+    }
+  }
+  
+  override func tableView(tableView: UITableView?, moveRowAtIndexPath fromIndexPath: NSIndexPath?, toIndexPath: NSIndexPath?)
+  {
+  }
+
+  override func tableView(tableView: UITableView?, canMoveRowAtIndexPath indexPath: NSIndexPath?) -> Bool
+  {
+    return true
   }
 }
