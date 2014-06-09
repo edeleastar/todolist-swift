@@ -14,24 +14,14 @@ class AddToDoItemViewController: UIViewController
 
   override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!)
   {
-    if sender != nil &&  sender as NSObject == doneButton
+    if let button = sender as? NSObject
     {
-      todoItem = ToDoItem(itemName:toDoItemText.text)
+      todoItem = button == doneButton ? ToDoItem(itemName:toDoItemText.text): nil
     }
   }
   
   init(coder aDecoder: NSCoder!)
   {
     super.init(coder: aDecoder)
-  }
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-  }
-  
-  override func didReceiveMemoryWarning()
-  {
-    super.didReceiveMemoryWarning()
   }
 }

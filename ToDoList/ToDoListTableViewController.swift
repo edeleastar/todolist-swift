@@ -3,7 +3,7 @@ import UIKit
 
 @objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController
 {
-  var items = ToDoItem[]()
+  var todoItems = ToDoItem[]()
   
   init(style: UITableViewStyle)
   {
@@ -21,41 +21,38 @@ import UIKit
     navigationItem.leftBarButtonItem = self.editButtonItem()
   }
   
-  // #pragma mark - Table view delegate
-  
-  override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
-  {
-    tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    var task = self.items[indexPath.row] as ToDoItem
-    task.completed = !task.completed
-    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-  }
-  
-  // #pragma mark - Table view data source
-  override func numberOfSectionsInTableView(tableView: UITableView?) -> Int
-  {
-    return 1
-  }
-  
-  override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int
-  {
-    return items.count
-  }
-  
   @IBAction func unwindToList (segue: UIStoryboardSegue?)
   {
     var controller = segue?.sourceViewController as AddToDoItemViewController
     if controller.todoItem != nil
     {
-      items.append(controller.todoItem!)
+      todoItems.append(controller.todoItem!)
       self.tableView.reloadData()
     }
   }
   
-  override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell?
+  override func numberOfSectionsInTableView(tableView: UITableView?) -> Int
+  {
+    return 1
+  }
+  
+  override func tableView(tableView: UITableView?, numberOfRowsInSection: Int) -> Int
+  {
+    return todoItems.count
+  }
+  
+  override func tableView(tableView: UITableView!, didSelectRowAtIndexPath : NSIndexPath!)
+  {
+    tableView.deselectRowAtIndexPath(didSelectRowAtIndexPath, animated: false)
+    var task = self.todoItems[didSelectRowAtIndexPath.row] as ToDoItem
+    task.completed = !task.completed
+    tableView.reloadRowsAtIndexPaths([didSelectRowAtIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+  }
+
+  override func tableView(tableView: UITableView?, cellForRowAtIndexPath : NSIndexPath!) -> UITableViewCell?
   {
     let cell           = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ListPrototypeCell")
-    var task           = items[indexPath.row]
+    var task           = todoItems[cellForRowAtIndexPath.row]
     
     cell.text          = task.itemName
     cell.accessoryType = task.completed ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
@@ -63,29 +60,31 @@ import UIKit
     return cell
   }
   
-  override func tableView(tableView: UITableView?, canEditRowAtIndexPath indexPath: NSIndexPath?) -> Bool
+  override func tableView(tableView: UITableView?, canEditRowAtIndexPath : NSIndexPath?) -> Bool
   {
     return true
   }
 
-  override func tableView(tableView: UITableView?, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?)
+  override func tableView(tableView: UITableView?, commitEditingStyle: UITableViewCellEditingStyle, forRowAtIndexPath: NSIndexPath?)
   {
-    if editingStyle == .Delete
+    if commitEditingStyle == .Delete
     {
-      var index:Int = indexPath!.row
-      items.removeAtIndex(index)
-      tableView?.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+      if let index = forRowAtIndexPath?.row
+      {
+        todoItems.removeAtIndex(index)
+        tableView?.deleteRowsAtIndexPaths([forRowAtIndexPath!], withRowAnimation: .Fade)
+      }
     }
-    else if editingStyle == .Insert
+    else if commitEditingStyle == .Insert
     {
     }
   }
   
-  override func tableView(tableView: UITableView?, moveRowAtIndexPath fromIndexPath: NSIndexPath?, toIndexPath: NSIndexPath?)
+  override func tableView(tableView: UITableView?, moveRowAtIndexPath : NSIndexPath?, toIndexPath: NSIndexPath?)
   {
   }
 
-  override func tableView(tableView: UITableView?, canMoveRowAtIndexPath indexPath: NSIndexPath?) -> Bool
+  override func tableView(tableView: UITableView?, canMoveRowAtIndexPath : NSIndexPath?) -> Bool
   {
     return true
   }

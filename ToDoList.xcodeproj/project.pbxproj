@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8FD4E04119446FDE00D5A0C2 /* testTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD4E04019446FDE00D5A0C2 /* testTableViewController.swift */; };
 		8FD9B9721942D8B800C2E40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD9B9711942D8B800C2E40D /* AppDelegate.swift */; };
 		8FD9B9741942D8B800C2E40D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD9B9731942D8B800C2E40D /* Images.xcassets */; };
 		8FD9B98A1942D91400C2E40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD9B9891942D91400C2E40D /* Main.storyboard */; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		8FD312EF19445E6600B0B1BC /* ToDoList-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ToDoList-Bridging-Header.h"; sourceTree = "<group>"; };
-		8FD4E04019446FDE00D5A0C2 /* testTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testTableViewController.swift; sourceTree = "<group>"; };
 		8FD9B96C1942D8B800C2E40D /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD9B9701942D8B800C2E40D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FD9B9711942D8B800C2E40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +35,6 @@
 		8FD9B9891942D91400C2E40D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		8FD9B98F1942F00800C2E40D /* ToDoListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewController.swift; sourceTree = "<group>"; };
 		8FD9B9911942F0D500C2E40D /* AddToDoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToDoItemViewController.swift; sourceTree = "<group>"; };
-		8FD9B9941942FA6A00C2E40D /* ToDoListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListTableViewController.h; sourceTree = "<group>"; };
 		8FD9B9971942FD5500C2E40D /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToDoItem.swift; path = ../ToDoItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,8 +80,6 @@
 				8FD9B9891942D91400C2E40D /* Main.storyboard */,
 				8FD9B9911942F0D500C2E40D /* AddToDoItemViewController.swift */,
 				8FD9B98F1942F00800C2E40D /* ToDoListTableViewController.swift */,
-				8FD4E04019446FDE00D5A0C2 /* testTableViewController.swift */,
-				8FD9B9941942FA6A00C2E40D /* ToDoListTableViewController.h */,
 				8FD9B9711942D8B800C2E40D /* AppDelegate.swift */,
 				8FD9B9731942D8B800C2E40D /* Images.xcassets */,
 				8FD9B96F1942D8B800C2E40D /* Supporting Files */,
@@ -202,7 +197,6 @@
 				8FD9B9721942D8B800C2E40D /* AppDelegate.swift in Sources */,
 				8FD9B9921942F0D500C2E40D /* AddToDoItemViewController.swift in Sources */,
 				8FD9B9981942FD5500C2E40D /* ToDoItem.swift in Sources */,
-				8FD4E04119446FDE00D5A0C2 /* testTableViewController.swift in Sources */,
 				8FD9B9901942F00800C2E40D /* ToDoListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +303,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ToDoList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToDoList/ToDoList-Bridging-Header.h";
@@ -323,6 +318,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ToDoList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToDoList/ToDoList-Bridging-Header.h";
