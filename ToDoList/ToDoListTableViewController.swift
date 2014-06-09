@@ -1,15 +1,9 @@
 import UIKit
 
-//
-@objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController//,  UITableViewDataSource, UITableViewDelegate
+
+@objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController
 {
-  var tasks: NSMutableArray = NSMutableArray()
-  
-  func loadinitialData()
-  {
-    //tasks.addObject(ToDoItem(completed:false, itemName:"Buy Eggs"))
-    //tasks.addObject(ToDoItem(completed:false, itemName:"Run away"))
-  }
+  var items = ToDoItem[]()
   
   init(style: UITableViewStyle)
   {
@@ -24,23 +18,15 @@ import UIKit
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    loadinitialData()
-    self.navigationItem.leftBarButtonItem = self.editButtonItem()
-  }
-  
-  override func didReceiveMemoryWarning()
-  {
-    super.didReceiveMemoryWarning()
+    navigationItem.leftBarButtonItem = self.editButtonItem()
   }
   
   // #pragma mark - Table view delegate
   
   override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
   {
-    self.tableView = tableView
-    
     tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    var task = self.tasks[indexPath.row] as ToDoItem
+    var task = self.items[indexPath.row] as ToDoItem
     task.completed = !task.completed
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
   }
@@ -53,7 +39,7 @@ import UIKit
   
   override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int
   {
-    return tasks.count
+    return items.count
   }
   
   @IBAction func unwindToList (segue: UIStoryboardSegue?)
@@ -61,7 +47,7 @@ import UIKit
     var controller = segue?.sourceViewController as AddToDoItemViewController
     if controller.todoItem != nil
     {
-      tasks.addObject(controller.todoItem)
+      items.append(controller.todoItem!)
       self.tableView.reloadData()
     }
   }
@@ -69,7 +55,7 @@ import UIKit
   override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell?
   {
     let cell           = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ListPrototypeCell")
-    var task           = self.tasks[indexPath.row] as ToDoItem
+    var task           = items[indexPath.row]
     
     cell.text          = task.itemName
     cell.accessoryType = task.completed ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
@@ -86,7 +72,8 @@ import UIKit
   {
     if editingStyle == .Delete
     {
-      tasks.removeObjectAtIndex(indexPath!.row)
+      var index:Int = indexPath!.row
+      items.removeAtIndex(index)
       tableView?.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
     }
     else if editingStyle == .Insert
