@@ -1,6 +1,5 @@
 import UIKit
 
-
 @objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController
 {
   var todoItems = ToDoItem[]()
@@ -15,9 +14,17 @@ import UIKit
     super.init(coder: aDecoder)
   }
   
+  func loadInitialData()
+  {
+    todoItems.append(ToDoItem(itemName:"Buy Milk",    completed:false))
+    todoItems.append(ToDoItem(itemName:"Buy eggs",    completed:false))
+    todoItems.append(ToDoItem(itemName:"Read a book", completed:false))
+  }
+  
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    loadInitialData()
     navigationItem.leftBarButtonItem = self.editButtonItem()
   }
   
